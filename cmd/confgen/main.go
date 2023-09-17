@@ -14,9 +14,10 @@ import (
 	"golang.org/x/exp/slices"
 )
 
+//
 // TODO: prune fields not in schema that are in data file
-// Run cue fmt or equivelant to simplify and ensure consistent formatting
 // TODO: ensure comments are always set from schema
+// TODO: Run cue fmt or equivelant to simplify and ensure consistent formatting
 
 func main() {
 	inputDataFile, err := filepath.Abs("data.cue")

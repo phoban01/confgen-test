@@ -12,7 +12,7 @@ counter: "<int>"
 enableTLS: true
 
 // this is a required field with of type string with a constraint
-redis_url: "<string>"
+redis_url: "https://redis.svc.url"
 
 // gate is an endpoint that will be checked at the given interval 
 gate: {
