@@ -186,6 +186,11 @@ func getMissingFields(
 	for i.Next() {
 		sel := append(parents, i.Selector())
 		path := cue.MakePath(sel...)
+
+		// need to ensure that if a nested
+		// field is changed that we can update the individual field without
+		// causing a conflict elswhere
+
 		if !v.LookupPath(path).Exists() {
 			m = append(m, path)
 		}
@@ -195,8 +200,7 @@ func getMissingFields(
 			// make a copy to avoid iterator issues
 			x := c.LookupPath(path)
 
-			// iterate over the struct fields, dropping the
-			// prefix which is the name of the struct
+			// iterate over the struct fields
 			var n []cue.Path
 			n, err = getMissingFields(x, v, n, sel[1:]...)
 			if err != nil {
