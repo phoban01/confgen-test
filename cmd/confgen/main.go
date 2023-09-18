@@ -66,7 +66,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println(string(exportBytes))
+	// fmt.Println(string(exportBytes))
 
 	if _, err := tmpFile.Write(exportBytes); err != nil {
 		log.Fatal(err)

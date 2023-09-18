@@ -3,7 +3,7 @@
 //
 
 // this is a new value
-id: *"transactions" | string
+id: *"transactions-svc" | string
 
 // sets the replicas for the service
 replicas!: *2 | int
