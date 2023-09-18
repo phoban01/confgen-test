@@ -1,0 +1,25 @@
+name: Generate
+
+on:
+  - pull_request
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.21.0'
+      - name: Set up CUE
+        uses: actions/setup-cue@v1.0.0
+        with:
+          version: '0.6.0'
+      - name: Run
+        run: go run ./cmd/confgen
+      - Name: Diff
+        run: git diff
+      - name: Validate
+        run: cue vet -c schema.cue data.cue
+
