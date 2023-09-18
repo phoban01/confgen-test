@@ -2,6 +2,9 @@
 // that introduces the project.
 //
 
+// this is a new value
+id: *"transactions" | string
+
 // sets the replicas for the service
 replicas!: *2 | int
 

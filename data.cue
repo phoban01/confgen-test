@@ -9,16 +9,16 @@ replicas: 2
 max: replicas * 3
 
 // new value
-owner: "<string>"
+owner: "piaras.hoban@sap.com"
 
 // counter value
-counter: "<int>"
+counter: 100
 
 // should tls be enabled for the service 
 enableTLS: true
 
 // this is a required field with of type string with a constraint
-redis_url: "<string>"
+redis_url: "https://redis:6379"
 
 // this is an optional field
 labels: {}
@@ -31,15 +31,12 @@ gate: {
 	// url 
 	url: "test"
 
-	// interval in miliseconds
-	interval: _|_ // conflicting values 1000 and 10
-
 	// data
 	data: {
 		// forename
 		forname: "piaras"
 		// surname
-		surname: "<string>"
+		surname: "hoban"
 
 		// address
 		address: {
@@ -51,6 +48,9 @@ gate: {
 		}
 	}
 }
+
+// this is a new value
+id: "transactions"
 
 // count is a series of numbers
 // that have very little relevance to anyone
