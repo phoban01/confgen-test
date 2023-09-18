@@ -18,7 +18,7 @@ jobs:
           version: '0.6.0'
       - name: Run
         run: go run ./cmd/confgen
-      - Name: Diff
+      - name: Diff
         run: git diff
       - name: Validate
         run: cue vet -c schema.cue data.cue
