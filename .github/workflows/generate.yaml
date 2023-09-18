@@ -8,6 +8,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
       - name: Set up Go
         uses: actions/setup-go@v4
         with:
@@ -21,6 +23,8 @@ jobs:
           commit_message: "[confgen] update data.cue"
   validate:
     runs-on: ubuntu-latest
+    needs: [build]
+    if: ${{ always() }}
     steps:
       - uses: actions/checkout@v3
       - name: Set up Go
