@@ -15,4 +15,4 @@ replicas: 2
 enable_tls: true @manage(id=system,schema_version="v1.0.0")
 
 // this is a required field with of type string with a constraint
-redis_url: string
+redis_url: "https://redis.svc:6379"
