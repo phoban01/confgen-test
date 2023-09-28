@@ -6,6 +6,27 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.21.0'
+      - name: Run
+        run: go run ./cmd/confgen
+      - name: Diff
+        run: git diff
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "[confgen] update data.cue"
+  validate:
+    runs-on: ubuntu-latest
+    needs: [build]
+    if: ${{ always() }}
     steps:
       - uses: actions/checkout@v3
       - name: Set up Go
@@ -13,13 +34,8 @@ jobs:
         with:
           go-version: '1.21.0'
       - name: Set up CUE
-        uses: actions/setup-cue@v1.0.0
+        uses: cue-lang/setup-cue@v1.0.0
         with:
-          version: '0.6.0'
-      - name: Run
-        run: go run ./cmd/confgen
-      - Name: Diff
-        run: git diff
+          version: 'v0.6.0'
       - name: Validate
         run: cue vet -c schema.cue data.cue
-
